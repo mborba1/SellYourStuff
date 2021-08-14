@@ -14,37 +14,39 @@ import ListingsScreen from './app/screens/ListingsScreen';
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker
  from './app/components/AppPicker';
+ import LoginScreen from './app/screens/LoginScreen';
 
-const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
-  { label: "Bicycles", value: 4 },
+// const categories = [
+//   { label: "Furniture", value: 1 },
+//   { label: "Clothing", value: 2 },
+//   { label: "Cameras", value: 3 },
+//   { label: "Bicycles", value: 4 },
 
   
-]
+//]
 export default function App() {
-  const [category, setCategory] = useState(categories[0]);
+  //const [category, setCategory] = useState(categories[0]);
 
   return (
+    <LoginScreen />
       // <WelcomeScreen />
-      <SafeAreaView>
-        <AppPicker 
-        selectedItem={category}
-        onSelectItem={(item) => setCategory(item)}
-        items={categories} 
-        icon="apps" 
-        placeholder="Category" />
-        <AppTextInput icon="email" placeholder="email" />
-      </SafeAreaView>
+      // <SafeAreaView>
+      //   <AppPicker 
+      //   selectedItem={category}
+      //   onSelectItem={(item) => setCategory(item)}
+      //   items={categories} 
+      //   icon="apps" 
+      //   placeholder="Category" />
+      //   <AppTextInput icon="email" placeholder="email" />
+      // </SafeAreaView>
       
   );
 }
 
 
-const styles = StyleSheet.create({
-  container: {
+// const styles = StyleSheet.create({
+//   container: {
     
     
-  },
-});
+//   },
+// });
