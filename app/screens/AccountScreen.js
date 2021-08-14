@@ -2,6 +2,7 @@ import React from 'react';
 import ListItem from '../components/ListItem';
 import { StyleSheet, FlatList, View } from 'react-native';
 
+import Screen from '../components/Screen';
 import ListItemSeparator from '../components/ListItemSeparator';
 import Icon from '../components/Icon'
 import colors from '../config/colors'
@@ -12,8 +13,7 @@ const menuItems = [
         icon: {
             name: "format-list-bulleted",
             backgroundColor: colors.primary
-        }
-        
+        }       
     },
     {
         title: "My Messages",
@@ -26,7 +26,7 @@ const menuItems = [
 ]
 function AccountScreen(props) {
     return (
-       <View>
+       <View style={styles.screen}>
         <View style={styles.container}>
             <ListItem
                 title="Lisa Marie"
@@ -59,6 +59,9 @@ function AccountScreen(props) {
 }
 
 const styles = StyleSheet.create({
+    screen:{
+        backgroundColor: colors.light
+    },
     container: {
         marginVertical: 20
     }
