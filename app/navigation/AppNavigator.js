@@ -22,12 +22,12 @@ const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="ListingEdit"
+      name="ListEdit"
       component={ListEditScreen}
       options={({ navigation }) => ({
         tabBarButton: () => (
           <NewListingButton
-            onPress={() => navigation.navigate(routes.LISTING_EDIT)}
+            onPress={() => navigation.navigate(routes.LIST_EDIT)}
           />
         ),
         tabBarIcon: ({ color, size }) => (
