@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import AppText from './AppText';
-import { View, TextInput, StyleSheet, Modal, TouchableWithoutFeedback, Button, FlatList} from 'react-native';
+import { View, StyleSheet, Modal, TouchableWithoutFeedback, Button, FlatList} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import PickerItem from './PickerItem';
 import Screen from './Screen'
 import defaultStyles from '../config/styles'
+import AppText from './AppText';
 
-function AppPicker({icon, items, placeholder, selectedItem, onSelectItem}) {
+function AppPicker({icon, items, placeholder, selectedItem, onSelectItem, PickerItemComponent = PickerItem, numberOfColumns=1, width= "100%"}) {
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <>
         <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
      
-        <View style={styles.container}>
+        <View style={[styles.container, { width }]}>
             {icon && (
             <MaterialCommunityIcons 
             name={icon} 
@@ -22,7 +22,10 @@ function AppPicker({icon, items, placeholder, selectedItem, onSelectItem}) {
             style={styles.icon}
             />
             )}
-            <AppText style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppText>
+            {selectedItem ? (
+                <AppText style={styles.text}>{selectedItem.label}</AppText>) : (<AppText>{placeholder}</AppText>
+            )}
+            
             <MaterialCommunityIcons 
             name="chevron-down"
             size={20} 
@@ -39,8 +42,10 @@ function AppPicker({icon, items, placeholder, selectedItem, onSelectItem}) {
                  data={items}
                  //item.value returns a number so we need to convert into a string
                  keyExtractor={item => item.value.toString()}
+                 numColumns={numberOfColumns}
                  renderItem={({ item }) => 
-                  <PickerItem 
+                  <PickerItemComponent 
+                     item={item}
                      label={item.label}
                      onPress={() => {
                          setModalVisible(false);
@@ -59,14 +64,16 @@ const styles = StyleSheet.create({
         backgroundColor: defaultStyles.colors.light,
         borderRadius: 25,
         flexDirection: "row",
-        width: '100%',
         padding: 15,
-        marginVertical: 10,
-        
+        marginVertical: 10,      
     },
     icon:{
         marginRight: 10,
 
+    },
+    placeholder: {
+        color: defaultStyles.colors.medium,
+        flex: 1,
     },
     text:{
         flex: 1,
