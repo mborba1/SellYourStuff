@@ -1,13 +1,16 @@
 import client from './client';
 
+const endpoint = '/listings'
+const getListings = () => client.get(endpoint)
 
-const endpoint = '/listings';
 
-const getListings = (a, b, c) => client.get(endpoint);
-
-const addListing = listing => {
-    //content-type
-}
 export default {
     getListings,
 }
+
+const data = new FormData();
+data.append('images', {
+    name: 'unique name',
+    type: 'image/jpeg',
+    uri: 'uri of the image on the device'
+});
